@@ -2,7 +2,8 @@ namespace ValheimBot.Services;
 
 public class UserRepository : IUserRepository
 {
-    
+    private string _fileName = "/app/users.json";
+
     public async Task AddDeath(string username)
     {
         var users = await LoadUsers();
@@ -20,9 +21,9 @@ public class UserRepository : IUserRepository
 
     public async Task<List<User>> LoadUsers()
     {
-        if (File.Exists("users.json"))
+        if (File.Exists(_fileName))
         {
-            var json = await File.ReadAllTextAsync("users.json");
+            var json = await File.ReadAllTextAsync(_fileName);
             return JsonSerializer.Deserialize<List<User>>(json);
         }
 
@@ -32,6 +33,6 @@ public class UserRepository : IUserRepository
     public void SaveDeaths(List<User> users)
     {
         var json = JsonSerializer.Serialize(users);
-        File.WriteAllTextAsync("users.json", json);
+        File.WriteAllTextAsync(_fileName, json);
     }
 }

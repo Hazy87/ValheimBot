@@ -12,7 +12,7 @@ public class DiedResponseMakerTest
     {
         _insultRepoMock = new Mock<IRandomDeathInsultRepo>();
         _parserMock = new Mock<IDiedRequestParser>();
-        _service = new DiedResponseMaker(_parserMock.Object, _insultRepoMock.Object);
+        _service = new DiedResponseMaker(_parserMock.Object, _insultRepoMock.Object, new Mock<IUserRepository>().Object);
     }
 
     [Fact]

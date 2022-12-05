@@ -12,6 +12,8 @@ public class BootStrapper
         builder.Services.AddSingleton<ILeftResponseMaker, LeftResponseMaker>();
         builder.Services.AddSingleton<IDiedRequestParser, DiedRequestParser>();
         builder.Services.AddSingleton<IUserRepository, UserRepository>();
+        builder.Services.AddSingleton<IRandomDeathInsultRepo, RandomDeathInsultRepo>();
+        builder.Services.AddSingleton<IRandomLeavingInsultRepo, RandomLeavingInsultRepo>();
         builder.Services.AddSingleton<IDiedResponseMaker, DiedResponseMaker>();
         builder.Services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(provider.GetService<IConfigService>().GetValue(ConfigConstants.Token)));
     }

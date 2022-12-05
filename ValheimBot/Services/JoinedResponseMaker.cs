@@ -11,6 +11,6 @@ public class JoinedResponseMaker : IJoinedResponseMaker
     public string GetResponse(string content)
     {
         var userName = _joinedRequestParser.GetUserName(content);
-        return userName;
+        return $"All welcome {userName}";
     }
 }
