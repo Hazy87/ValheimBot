@@ -12,11 +12,11 @@ public class DiedResponseMaker : IDiedResponseMaker
         _randomDeathInsultRepo = randomDeathInsultRepo;
         _userRepository = userRepository;
     }
-    public string GetResponse(string content)
+    public async Task<string> GetResponse(string content)
     {
-        var userName = _diedRequestParser.GetUserName(content);
-        _userRepository.AddDeath(userName);
+        var userName =  _diedRequestParser.GetUserName(content);
+        await _userRepository.AddDeath(userName);
         var template = _randomDeathInsultRepo.GetInsult();
-        return string.Format(template, userName);
+        return string.Format(template, userName, await _userRepository.GetDeaths(userName));
     }
 }

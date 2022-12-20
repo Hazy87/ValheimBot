@@ -4,6 +4,6 @@ public interface IUserRepository
 {
     Task AddDeath(string username);
     Task<int> GetDeaths(string username);
-    Task<List<User>> LoadUsers();
-    void SaveDeaths(List<User> users);
+    Task SaveUser(User user);
+    Task<User> GetUser(string userid);
 }

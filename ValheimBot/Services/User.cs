@@ -1,8 +1,12 @@
+using Amazon.DynamoDBv2.DataModel;
+
 namespace ValheimBot.Services;
 
+[DynamoDBTable("valheimbot-stats")]
 public class User
 {
-    public string Username { get; set; }
+    [DynamoDBHashKey]
+    public string UserId { get; set; }
     public DateTime LastLogin { get; set; }
-    public List<DateTime> Deaths { get; set; }
+    public List<string> Deaths { get; set; }
 }
