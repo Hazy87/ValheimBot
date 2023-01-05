@@ -8,7 +8,7 @@ public class JoinedResponseMakerTests
     public JoinedResponseMakerTests()
     {
         _joinedRequestParserMock = new Mock<IJoinedRequestParser>();
-        _service = new JoinedResponseMaker(_joinedRequestParserMock.Object);
+        _service = new JoinedResponseMaker(_joinedRequestParserMock.Object, new Mock<IUserRepository>().Object);
     }
 
     [Fact]

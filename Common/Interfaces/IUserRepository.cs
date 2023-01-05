@@ -1,4 +1,4 @@
-namespace ValheimBot.Interfaces;
+namespace Common.Interfaces;
 
 public interface IUserRepository
 {
@@ -6,4 +6,5 @@ public interface IUserRepository
     Task<int> GetDeaths(string username);
     Task SaveUser(User user);
     Task<User> GetUser(string userid);
+    Task<List<User>> GetUsers();
 }

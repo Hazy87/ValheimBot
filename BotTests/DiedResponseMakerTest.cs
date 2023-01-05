@@ -16,12 +16,12 @@ public class DiedResponseMakerTest
     }
 
     [Fact]
-    public void Returns_MergedTemplate()
+    public async Task Returns_MergedTemplate()
     {
         _parserMock.Setup(x => x.GetUserName(It.IsAny<string>())).Returns("alex");
         _insultRepoMock.Setup(x => x.GetInsult()).Returns("{0} is cool");
 
-        var response = _service.GetResponse("");
+        var response = await _service.GetResponse("");
         
         Assert.AreEqual("alex is cool", response);
     }

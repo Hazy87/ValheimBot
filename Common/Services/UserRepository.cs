@@ -1,26 +1,30 @@
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
-
-namespace ValheimBot.Services;
+namespace Common.Services;
 
 public class UserRepository : IUserRepository
 {
     public UserRepository()
     {
         context = new DynamoDBContext(new AmazonDynamoDBClient(new AmazonDynamoDBConfig()
-            { ServiceURL = "http://192.168.10.4:8000", UseHttp = true }));
+            { ServiceURL = Environment.GetEnvironmentVariable("ServiceURL"), UseHttp = true }));
 
     }
     private readonly DynamoDBContext context;
 
+    public async Task<List<User>> GetUsers()
+    {
+        var scanAsync = await context.ScanAsync<User>(new List<ScanCondition>()).GetNextSetAsync();
+        return scanAsync;
+    }
     public async Task<User> GetUser(string userid)
     {
         var queryFilter = new QueryFilter();
         queryFilter.AddCondition("UserId", QueryOperator.Equal, userid);
         var users = await context.FromQueryAsync<User>(new QueryOperationConfig() { Filter = queryFilter }).GetNextSetAsync();
         if (users.Count == 0)
-            return new User { UserId = userid, Deaths = new List<string>()};
+        {
+            return new User { UserId = userid, Deaths = new List<string>() };
+        }
+
         return users.First();
     }
     public async Task AddDeath(string username)

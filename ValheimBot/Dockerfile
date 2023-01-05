@@ -6,6 +6,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["ValheimBot/ValheimBot.csproj", "ValheimBot/"]
+COPY ["ValheimBot/Common.csproj", "ValheimBot/"]
 RUN dotnet restore "ValheimBot/ValheimBot.csproj"
 COPY . .
 WORKDIR "/src/ValheimBot"
