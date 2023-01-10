@@ -7,7 +7,7 @@ var diedResponseMaker = app.Services.GetService<IDiedResponseMaker>();
 var insultSendingService = app.Services.GetService<IInsultSendingService>();
 app.MapPost("/joined", async (ValheimRequest request) =>
 {
-     Console.WriteLine(request.content);
+     Console.WriteLine($"joined end point {request.content}");
      if (request.content.Contains("died"))
           return;
      var response = await joinedResponseMaker.GetResponse(request.content);
@@ -15,7 +15,7 @@ app.MapPost("/joined", async (ValheimRequest request) =>
 });
 app.MapPost("/died", async (ValheimRequest request) =>
 {
-     Console.WriteLine(request.content);
+     Console.WriteLine($"died end point {request.content}");
      if (!request.content.Contains("died"))
           return;
      var response = await diedResponseMaker.GetResponse(request.content);
@@ -25,7 +25,7 @@ app.MapPost("/died", async (ValheimRequest request) =>
 });
 app.MapPost("/left", async (ValheimRequest request) =>
 {
-     Console.WriteLine(request.content);
+     Console.WriteLine($"left end point {request.content}");
 
      var response =  leftResponseMaker.GetResponse(request.content);
      await insultSendingService.SendMessage(response);
