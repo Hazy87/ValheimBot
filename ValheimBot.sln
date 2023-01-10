@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValheimBot", "ValheimBot\ValheimBot.csproj", "{D52B6131-592B-48C7-8A4D-4796A489F932}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotTests", "BotTests\BotTests.csproj", "{46AC8A22-35BC-462E-86DC-24922BDCF857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotListener", "BotListener\BotListener.csproj", "{27609079-6BA0-45E9-B435-832905D137EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BAECF4F5-D630-44D7-AE79-FCABF4611B52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D52B6131-592B-48C7-8A4D-4796A489F932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52B6131-592B-48C7-8A4D-4796A489F932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52B6131-592B-48C7-8A4D-4796A489F932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52B6131-592B-48C7-8A4D-4796A489F932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46AC8A22-35BC-462E-86DC-24922BDCF857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46AC8A22-35BC-462E-86DC-24922BDCF857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46AC8A22-35BC-462E-86DC-24922BDCF857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46AC8A22-35BC-462E-86DC-24922BDCF857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27609079-6BA0-45E9-B435-832905D137EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27609079-6BA0-45E9-B435-832905D137EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27609079-6BA0-45E9-B435-832905D137EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27609079-6BA0-45E9-B435-832905D137EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAECF4F5-D630-44D7-AE79-FCABF4611B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAECF4F5-D630-44D7-AE79-FCABF4611B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAECF4F5-D630-44D7-AE79-FCABF4611B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAECF4F5-D630-44D7-AE79-FCABF4611B52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
