@@ -20,7 +20,7 @@ jobs:
       - docker pull  repo.hazy.uk/valheimbot
       - docker stop valheimbot
       - docker rm valheimbot
-      - docker run --restart=always -d --name valheimbot -e  TELEGRAM_TOKEN="@secret:TELEGRAM_TOKEN@"
+      - docker run --restart=always -d --name valheimbot -e  TELEGRAM_TOKEN="@secret:TELEGRAM_TOKEN@" -e AWS_SECRET_KEY="blah" -e AWS_ACCESS_KEY_ID="blah" -e ServiceURL="http://192.168.10.179:8000"
         -e TELEGRAM_CHATID="@secret:TELEGRAM_CHATID@" repo.hazy.uk/valheimbot
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
