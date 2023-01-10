@@ -8,7 +8,6 @@ jobs:
     cloneCredential: !DefaultCredential {}
     withLfs: false
     withSubmodules: true
-    checkoutPath: /opt/onedev/temp/server/alphasdk
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
     name: Build and deploy
