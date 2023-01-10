@@ -1,0 +1,31 @@
+version: 19
+jobs:
+- name: Build and deploy
+  jobExecutor: dockerexec
+  steps:
+  - !CheckoutStep
+    name: Checkout
+    cloneCredential: !DefaultCredential {}
+    withLfs: false
+    withSubmodules: true
+    checkoutPath: /opt/onedev/temp/server/alphasdk
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !CommandStep
+    name: Build and deploy
+    runInContainer: true
+    image: docker
+    interpreter: !DefaultInterpreter
+      commands:
+      - docker build . -t repo.hazy.uk/valheimbot
+      - docker push  repo.hazy.uk/valheimbot
+      - docker pull  repo.hazy.uk/valheimbot
+      - docker stop valheimbot
+      - docker rm valheimbot
+      - docker run --restart=always -d --name valheimbot -e  TELEGRAM_TOKEN="@secret:TELEGRAM_TOKEN@"
+        -e TELEGRAM_CHATID="@secret:TELEGRAM_CHATID@" repo.hazy.uk/valheimbot
+    useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 3600
