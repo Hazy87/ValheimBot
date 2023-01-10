@@ -19,6 +19,8 @@ app.MapPost("/died", async (ValheimRequest request) =>
      if (!request.content.Contains("died"))
           return;
      var response = await diedResponseMaker.GetResponse(request.content);
+     
+     Console.Write("made response");
      await insultSendingService.SendMessage(response);
 });
 app.MapPost("/left", async (ValheimRequest request) =>

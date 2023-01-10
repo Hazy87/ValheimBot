@@ -16,6 +16,7 @@ public class TelegramInsultSendingService : IInsultSendingService
     public async Task SendMessage(string message)
     {
         var chatId = long.Parse(_configService.GetValue(ConfigConstants.ChatId));
+        Console.Write($"Sending {message} to {chatId}");
         await _client.SendTextMessageAsync(new ChatId(chatId), message);
     }
 }
