@@ -1,14 +1,17 @@
+using Amazon.DynamoDBv2.Model;
+
 namespace Common.Services;
 
 public class UserRepository : IUserRepository
 {
     public UserRepository()
     {
-        context = new DynamoDBContext(new AmazonDynamoDBClient(new AmazonDynamoDBConfig()
-            { ServiceURL = Environment.GetEnvironmentVariable("ServiceURL"), UseHttp = true }));
-
+        _amazonDynamoDbClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig()
+            { ServiceURL = Environment.GetEnvironmentVariable("ServiceURL"), UseHttp = true });
+        context = new DynamoDBContext(_amazonDynamoDbClient);
     }
     private readonly DynamoDBContext context;
+    private AmazonDynamoDBClient _amazonDynamoDbClient;
 
     public async Task<List<User>> GetUsers()
     {
@@ -29,6 +32,17 @@ public class UserRepository : IUserRepository
     }
     public async Task AddDeath(string username)
     {
+        await _amazonDynamoDbClient.UpdateItemAsync(new UpdateItemRequest()
+        {
+            TableName = "valheimbot-stats",
+            Key = new Dictionary<string, AttributeValue>() { { "UserId", new AttributeValue(username) } },
+            AttributeUpdates = new Dictionary<string, AttributeValueUpdate>()
+            {
+                {
+                    "DeathCount", new AttributeValueUpdate() { Action = "ADD", Value = new AttributeValue("1") }
+                }
+            }
+        });
         var user = await GetUser(username);
         if (user.Deaths == null)
             user.Deaths = new List<string>();
@@ -38,7 +52,7 @@ public class UserRepository : IUserRepository
 
     public async Task<int> GetDeaths(string username)
     {
-        return (await GetUser(username)).Deaths.Count;
+        return (await GetUser(username)).DeathCount;
     }
 
 
