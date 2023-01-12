@@ -39,7 +39,7 @@ public class UserRepository : IUserRepository
             AttributeUpdates = new Dictionary<string, AttributeValueUpdate>()
             {
                 {
-                    "DeathCount", new AttributeValueUpdate() { Action = "ADD", Value = new AttributeValue("1") }
+                    "DeathCount", new AttributeValueUpdate() { Action = "ADD", Value = new AttributeValue(){N = 1} }
                 }
             }
         });
